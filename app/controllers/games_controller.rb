@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = Games::Game.all
   end
 
   # GET /games/1
@@ -14,27 +14,20 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    @game = Game.new
+    @game = Games::Game.new
   end
 
   # GET /games/1/edit
   def edit
   end
 
-  # POST /games
-  # POST /games.json
   def create
-    @game = Game.new(game_params)
-
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+    game_id = SecureRandom.uuid
+    with_aggregate(Collecting::Collection, game_id) do |collection|
+      collection.add(params[:games_game][:name])
     end
+
+    redirect_to games_path, notice: 'Game was successfully created.'
   end
 
   # PATCH/PUT /games/1
@@ -64,7 +57,7 @@ class GamesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @game = Game.find(params[:id])
+      @game = Games::Game.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
