@@ -27,7 +27,7 @@ class GamesController < ApplicationController
       collection.add(params[:games_game][:name])
     end
 
-    redirect_to games_path, notice: 'Game was successfully created.'
+    redirect_to games_path, notice: 'Game was successfully added to your collection.'
   end
 
   # PATCH/PUT /games/1
