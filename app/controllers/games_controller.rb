@@ -26,7 +26,14 @@ class GamesController < ApplicationController
   end
 
   def update
+    @game = Games::Game.find(params[:id])
+    game_name = params[:games_game][:name]
+
+    with_aggregate(Collecting::Collection, @game.uuid) do |collection|
+      collection.update_item(@game.id, game_name)
     end
+
+    redirect_to game_path(@game), notice: 'Collection item was successfully updated.'
   end
 
   def destroy

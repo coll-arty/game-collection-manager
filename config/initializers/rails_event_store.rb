@@ -12,5 +12,6 @@ Rails.configuration.to_prepare do
 
   Rails.configuration.event_store.tap do |store|
     store.subscribe(Games::OnGameAdded, to: [Collecting::GameAdded])
+    store.subscribe(Games::OnItemUpdated, to: [Collecting::ItemUpdated])
   end
 end

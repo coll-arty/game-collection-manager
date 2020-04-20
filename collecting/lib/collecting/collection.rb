@@ -12,7 +12,15 @@ module Collecting
       apply GameAdded.new(data: { id: id, name: name })
     end
 
+    def update_item(id, name)
+      apply ItemUpdated.new(data: { id: id, name: name })
+    end
+
     on GameAdded do |event|
+      true
+    end
+
+    on ItemUpdated do |event|
       true
     end
   end
