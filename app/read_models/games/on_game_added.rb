@@ -1,7 +1,7 @@
 module Games
   class OnGameAdded
     def call(event)
-      Game.create!(name: event.data[:name])
+      Game.create!(uuid: event.data[:id], name: event.data[:name])
     end
   end
 end

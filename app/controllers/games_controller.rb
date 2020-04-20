@@ -23,8 +23,9 @@ class GamesController < ApplicationController
 
   def create
     game_id = SecureRandom.uuid
+    game_name = params[:games_game][:name]
     with_aggregate(Collecting::Collection, game_id) do |collection|
-      collection.add(params[:games_game][:name])
+      collection.add(game_id, game_name)
     end
 
     redirect_to games_path, notice: 'Game was successfully added to your collection.'

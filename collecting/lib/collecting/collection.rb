@@ -8,8 +8,8 @@ module Collecting
       @id = id
     end
 
-    def add(name)
-      apply GameAdded.new(data: { name: name })
+    def add(id, name)
+      apply GameAdded.new(data: { id: id, name: name })
     end
 
     on GameAdded do |event|
