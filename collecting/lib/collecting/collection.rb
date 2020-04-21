@@ -16,11 +16,19 @@ module Collecting
       apply ItemUpdated.new(data: { id: id, name: name })
     end
 
+    def remove_item(id)
+      apply ItemRemoved.new(data: { id: id })
+    end
+
     on GameAdded do |event|
       true
     end
 
     on ItemUpdated do |event|
+      true
+    end
+
+    on ItemRemoved do |event|
       true
     end
   end

@@ -38,11 +38,11 @@ class GamesController < ApplicationController
 
   def destroy
     @game = Games::Game.find(params[:id])
-    @game.destroy
-    respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
-      format.json { head :no_content }
+    with_aggregate(Collecting::Collection, @game.uuid) do |collection|
+      collection.remove_item(@game.id)
     end
+
+    redirect_to games_url, notice: 'Item was successfully removed.'
   end
 
   private
