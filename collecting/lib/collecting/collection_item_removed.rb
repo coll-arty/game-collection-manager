@@ -1,5 +1,5 @@
 module Collecting
-  class ItemRemoved < Event
+  class CollectionItemRemoved < Event
     attribute :id, Types::String
   end
 end

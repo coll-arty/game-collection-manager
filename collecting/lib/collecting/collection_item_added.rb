@@ -1,5 +1,5 @@
 module Collecting
-  class GameAdded < Event
+  class CollectionItemAdded < Event
     attribute :id, Types::String
     attribute :name, Types::String
   end

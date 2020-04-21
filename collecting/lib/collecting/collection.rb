@@ -9,26 +9,26 @@ module Collecting
     end
 
     def add(id, name)
-      apply GameAdded.new(data: { id: id, name: name })
+      apply CollectionItemAdded.new(data: { id: id, name: name })
     end
 
     def update_item(id, name)
-      apply ItemUpdated.new(data: { id: id, name: name })
+      apply CollectionItemUpdated.new(data: { id: id, name: name })
     end
 
     def remove_item(id)
-      apply ItemRemoved.new(data: { id: id })
+      apply CollectionItemRemoved.new(data: { id: id })
     end
 
-    on GameAdded do |event|
+    on CollectionItemAdded do |event|
       true
     end
 
-    on ItemUpdated do |event|
+    on CollectionItemUpdated do |event|
       true
     end
 
-    on ItemRemoved do |event|
+    on CollectionItemRemoved do |event|
       true
     end
   end

@@ -1,5 +1,5 @@
 module Collecting
-  class ItemUpdated < Event
+  class CollectionItemUpdated < Event
     attribute :id, Types::String
     attribute :name, Types::String
   end
