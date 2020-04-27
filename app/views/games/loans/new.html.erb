@@ -1,0 +1,16 @@
+<h1>Lend item</h1>
+
+<%= form_with(url: collection_item_loans_path(@collection_item_id), local: true) do |form| %>
+  <p>I'm lending this game to:</p>
+  <div class="field">
+    <%= form.label :loanee_name %>
+    <%= form.text_field :loanee_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', collection_items_path %>
