@@ -1,7 +1,7 @@
 module Games
   class CollectionItemsController < ApplicationController
     def index
-      @collection_items = Games::CollectionItem.all
+      @collection_items = Games::CollectionItem.all.includes(:loan)
     end
   
     def show
