@@ -24,6 +24,10 @@ module Collecting
       apply CollectionItemLent.new(data: { id: id, loanee_name: loanee_name })
     end
 
+    def return_item(loan_id)
+      apply CollectionItemReturned.new(data: { loan_id: loan_id })
+    end
+
     on CollectionItemAdded do |event|
       true
     end
@@ -37,6 +41,10 @@ module Collecting
     end
 
     on CollectionItemLent do |event|
+      true
+    end
+
+    on CollectionItemReturned do |event|
       true
     end
   end

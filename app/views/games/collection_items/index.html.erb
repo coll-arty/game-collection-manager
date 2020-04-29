@@ -19,8 +19,8 @@
         <td><%= link_to 'Destroy', collection_item_path(collection_item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%# Should put a logic here to see Return only if the Item is lent, but later- I want to see if it works first %>
         <td><%= link_to 'Lend', new_collection_item_loan_path(collection_item) %></td>
-        <td><%= link_to 'Return' %></td>
         <% if collection_item.loan.present? %>
+          <td><%= link_to 'Return', collection_item_loan_path(collection_item, collection_item.loan), method: :delete %></td>
           <td>Lent to: <%= collection_item.loan.loanee %></td>
         <% end %>
       </tr>

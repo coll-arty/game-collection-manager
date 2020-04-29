@@ -15,5 +15,6 @@ Rails.configuration.to_prepare do
     store.subscribe(Games::OnCollectionItemUpdated, to: [Collecting::CollectionItemUpdated])
     store.subscribe(Games::OnCollectionItemRemoved, to: [Collecting::CollectionItemRemoved])
     store.subscribe(Games::OnCollectionItemLent, to: [Collecting::CollectionItemLent])
+    store.subscribe(Games::OnCollectionItemReturned, to: [Collecting::CollectionItemReturned])
   end
 end
