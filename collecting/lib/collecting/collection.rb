@@ -4,8 +4,12 @@ module Collecting
   class Collection
     include AggregateRoot
 
+    AlreadyLent = Class.new(StandardError)
+    AlreadyReturned = Class.new(StandardError)
+
     def initialize(id)
       @id = id
+      @state = :in_stock
     end
 
     def add(id, name)
@@ -21,10 +25,12 @@ module Collecting
     end
 
     def lend_item(id, loanee_name)
+      raise AlreadyLent if @state == :lent
       apply CollectionItemLent.new(data: { id: id, loanee_name: loanee_name })
     end
 
     def return_item(loan_id)
+      raise AlreadyReturned if @state == :in_stock
       apply CollectionItemReturned.new(data: { loan_id: loan_id })
     end
 
@@ -41,11 +47,11 @@ module Collecting
     end
 
     on CollectionItemLent do |event|
-      true
+      @state = :lent
     end
 
     on CollectionItemReturned do |event|
-      true
+      @state = :in_stock
     end
   end
 end

@@ -16,8 +16,9 @@ module Games
 
     def destroy
       loan_id = params[:id]
+      collection_item_id = params[:collection_item_id]
 
-      with_aggregate(Collecting::Collection, loan_id) do |collection|
+      with_aggregate(Collecting::Collection, collection_item_id) do |collection|
         collection.return_item(loan_id)
       end
 
