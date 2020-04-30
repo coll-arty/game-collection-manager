@@ -12,7 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2020_04_27_064720) do
 
-  create_table "event_store_events", id: :string, limit: 36, force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
+  enable_extension "plpgsql"
+
+  create_table "event_store_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "event_type", null: false
     t.binary "metadata"
     t.binary "data", null: false
@@ -21,10 +25,10 @@ ActiveRecord::Schema.define(version: 2020_04_27_064720) do
     t.index ["event_type"], name: "index_event_store_events_on_event_type"
   end
 
-  create_table "event_store_events_in_streams", force: :cascade do |t|
+  create_table "event_store_events_in_streams", id: :serial, force: :cascade do |t|
     t.string "stream", null: false
     t.integer "position"
-    t.string "event_id", limit: 36, null: false
+    t.uuid "event_id", null: false
     t.datetime "created_at", null: false
     t.index ["created_at"], name: "index_event_store_events_in_streams_on_created_at"
     t.index ["stream", "event_id"], name: "index_event_store_events_in_streams_on_stream_and_event_id", unique: true
@@ -39,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_064720) do
   end
 
   create_table "games_loans", force: :cascade do |t|
-    t.integer "games_collection_item_id", null: false
+    t.bigint "games_collection_item_id", null: false
     t.text "loanee", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
