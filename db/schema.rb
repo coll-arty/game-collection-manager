@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_064720) do
+ActiveRecord::Schema.define(version: 2020_06_01_065531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_064720) do
     t.text "loanee", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "loanee_email"
     t.index ["games_collection_item_id"], name: "index_games_loans_on_games_collection_item_id"
   end
 
