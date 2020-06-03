@@ -146,7 +146,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (4.0.4)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-protection (2.0.8.1)
@@ -285,7 +285,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg
   pry
-  puma (~> 4.1)
+  puma (~> 4.3)
   rails (~> 6.0.2, >= 6.0.2.2)
   rails_event_store (~> 0.43.0)
   sass-rails (>= 6)
