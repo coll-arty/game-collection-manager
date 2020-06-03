@@ -44,6 +44,10 @@ module Collecting
       apply CollectionItemReturned.new(data: { loan_id: loan_id })
     end
 
+    def send_return_reminders
+      apply ReturnRemindersSent.new(data: { date: DateTime.now })
+    end
+
     on CollectionItemAdded do |_event|
       true
     end
@@ -62,6 +66,10 @@ module Collecting
 
     on CollectionItemReturned do |_event|
       @state = :in_stock
+    end
+
+    on ReturnRemindersSent do |_event|
+      true
     end
   end
 end

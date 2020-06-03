@@ -18,5 +18,6 @@ Rails.configuration.to_prepare do
     store.subscribe(Games::OnCollectionItemRemoved, to: [Collecting::CollectionItemRemoved])
     store.subscribe(Games::OnCollectionItemLent, to: [Collecting::CollectionItemLentV2])
     store.subscribe(Games::OnCollectionItemReturned, to: [Collecting::CollectionItemReturned])
+    store.subscribe(Games::OnReturnRemindersSent, to: [Collecting::ReturnRemindersSent])
   end
 end
