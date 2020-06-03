@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Games
   class LoansController < ApplicationController
     def new
@@ -10,7 +12,7 @@ module Games
       with_aggregate(Collecting::Collection, collection_item_id) do |collection|
         collection.lend_item(collection_item_id, loanee_name, params[:loanee_email])
       end
-  
+
       redirect_to collection_items_path, notice: "Game was successfully lent to #{loanee_name}."
     end
 
@@ -22,7 +24,7 @@ module Games
         collection.return_item(loan_id)
       end
 
-      redirect_to collection_items_path, notice: "Game was successfully returned."
+      redirect_to collection_items_path, notice: 'Game was successfully returned.'
     end
-  end  
+  end
 end

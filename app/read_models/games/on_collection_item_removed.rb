@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Games
   class OnCollectionItemRemoved
     def call(event)

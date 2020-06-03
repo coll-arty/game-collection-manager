@@ -54,7 +54,7 @@ module Collecting
 
     on CollectionItemRemoved do |_event|
       true
-    end 
+    end
 
     on CollectionItemLentV2 do |_event|
       @state = :lent

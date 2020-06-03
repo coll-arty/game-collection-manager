@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   scope module: 'games' do
     root 'collection_items#index'
     resources :collection_items do
-      resources :loans, only: [:new, :create, :destroy]
+      resources :loans, only: %i[new create destroy]
     end
   end
   mount RailsEventStore::Browser => '/res' if Rails.env.development?

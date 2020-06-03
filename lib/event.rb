@@ -1,10 +1,16 @@
+# frozen_string_literal: true
+
 require 'time'
 
 class Event < Dry::Struct
   transform_keys(&:to_sym)
 
   def self.new(data: {}, metadata: {}, **rest)
-    timestamp = Time.parse(metadata.delete(:timestamp)) rescue nil
+    timestamp = begin
+                  Time.parse(metadata.delete(:timestamp))
+                rescue StandardError
+                  nil
+                end
     super(rest.merge(data).merge(metadata: metadata.merge(timestamp: timestamp)))
   end
 
@@ -18,7 +24,7 @@ class Event < Dry::Struct
     {
       event_id: event_id,
       metadata: metadata,
-      data:     super.except(:event_id, :metadata)
+      data: super.except(:event_id, :metadata)
     }
   end
 
@@ -40,5 +46,5 @@ class Event < Dry::Struct
       other_event.data.eql?(data)
   end
 
-  alias_method :eql?, :==
+  alias eql? ==
 end

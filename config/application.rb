@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -16,7 +18,7 @@ module GameCollectionManager
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.paths.add "lib",            eager_load: true
+    config.paths.add 'lib',            eager_load: true
     config.paths.add 'collecting/lib', eager_load: true
   end
 end
